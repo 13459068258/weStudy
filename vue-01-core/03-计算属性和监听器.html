@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        数学：<input type="text" v-model='mathScore'>
+        英语: <input type="text" v-model='englishScore'><br />
+        <!-- 单向绑定 -->
+        总分（函数）: <input type="text" v-model='sumScpre()'><br />
+        总分（计算属性-单向）: <input type="text" v-model='sumScpre1'><br />
+        <!-- 双向绑定 -->
+        总分（计算属性-双向）: <input type="text" v-model='sumScpre2'><br />
+
+        总分（计算属性-监听器）: <input type="text" v-model='sumScpre3'><br />
+
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                mathScore: 80,
+                englishScore: 90,
+                sumScpre3: 0
+            },
+            methods: {
+                sumScpre: function () {
+                    console.log('被调用了')
+                    return (this.mathScore - 0) + (this.englishScore - 0)
+                }
+            },
+            computed: {
+                sumScpre1: function () {
+                    console.log('计算属性被调用被调用了')
+                    return (this.mathScore - 0) + (this.englishScore - 0)
+                },
+
+                sumScpre2: {
+                    get: function () {
+                        console.log('sumScpre2.get被调用')
+                        return (this.mathScore - 0) + (this.englishScore - 0)
+                    },
+                    set: function (newValue) {
+                        console.log('sumScpre2.set被调用')
+                        var avgScore = newValue / 2
+                        this.mathScore = avgScore
+                        this.englishScore = avgScore
+                    }
+                },
+
+
+
+            },
+
+            watch: {
+                mathScore: function (newValue) {
+                    this.sumScpre3 = (newValue - 0) + (this.englishScore - 0)
+                }
+            },
+        })
+
+        vm.$watch('englishScore',function(newValue){
+            this.sumScpre3 = (newValue - 0) + (this.mathScore - 0)
+        })
+
+
+    </script>
+</body>
+
+</html>
