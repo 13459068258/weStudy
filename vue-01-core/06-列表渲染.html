@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h3>1、迭代数组</h3>
+        <ul>
+            <li v-for='(e,index) in emps'>
+               编号: {{index+1}}姓名：{{e.name}}， 工资：{{e.salay}}
+            </li>
+        </ul>
+
+        <h3>2、迭代对象</h3>
+        <ul>
+            <li v-for='(value,key,index) in person'>
+                第{{index+1}}个属性为：{{key}}={{value}}
+            </li>
+        </ul>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                emps: [
+                    { name: '小李', salay: '20000' },
+                    { name: '小马', salay: '10000' },
+                    { name: '小白', salay: '10400' }
+                ],
+                person:{
+                    name:'小林',
+                    age:18
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h3>1、事件处理方法 v-on 或 @</h3>
+        <button @click="say">Say {{msg}}</button>
+        <button @click="warn('测试',$event)">Warn</button>
+
+        <h3>2、事件修饰符</h3>
+        <!-- 2.1 防止单击事件继续传播 -->
+        <div @click="todo">
+            <button @click="doThis">单击事件会继续传播</button>
+        </div>
+
+        <div @click="todo">
+            <!-- .stop作用，阻止事件的传播 -->
+            <button @click.stop="doThis"> .stop作用，阻止事件的传播</button>
+        </div>
+
+        <!-- 2.2阻止事件的默认行为 -->
+        <a href="http://www.baidu.com/" @click.prevent="doStop">百度</a>
+
+        <!-- 2.3点击事件只触发一次 -->
+        <button @click.once='doOnly'>点击事件只触发一次:{{num}}</button><br>
+
+        <h3>3.按键修饰符</h3>
+        <input type="text" @keyup.enter='keyEnter'>
+        <input type="text" @keyup.space='keySpace'>
+
+
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '你好',
+                num: 0
+            },
+            methods: {
+                say: function (event) {
+                    alert(this.msg)
+                    alert(event.target.innerHTML)
+                },
+                warn: function (name, event) {
+                    alert(name + ',' + event.target.tagName)
+                },
+                doThis: function () {
+                    alert('doThis...')
+                },
+                todo: function () {
+                    alert('todo...')
+                },
+                doStop: function () {
+                    alert('href默认行为被阻止')
+                },
+                doOnly:function(){
+                    this.num++
+                },
+                keyEnter:function(){
+                    alert('当前按的是回车键')
+                },
+                keySpace:function(){
+                    alert('当前按的是ko键')
+                }
+            },
+        })
+
+
+    </script>
+</body>
+
+</html>

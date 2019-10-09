@@ -17,15 +17,19 @@
 <body>
     <div id="app">
         <h3>v-if 条件渲染</h3>
-        <input type="checkbox">勾选后显示红色小块
-        <div class="box"></div>
+        <input v-model='seen' type="checkbox">勾选后显示红色小块
+        <div  v-if='seen' class="box"></div>
+        <p v-else>红色隐藏了</p>
+
+        <h3>v-show 条件渲染</h3>
+        <div v-show='seen' class="box"></div>
     </div>
     <script src="./node_modules/vue/dist/vue.js"></script>
     <script>
         var vm=new Vue({
             el:'#app',
             data:{
-
+                seen:true
             }
         })
     
