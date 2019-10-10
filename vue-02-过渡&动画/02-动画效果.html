@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .bounce-enter-active {
+            animation: bounce-in 1s;
+        }
+
+        .bounce-leave-active {
+            animation: bounce-in 1s reverse;
+        }
+
+        @keyframes bounce-in {
+            0% {
+                /*持续时长的百分比，如持续1s，0%表示当0秒，50%表示当0.5秒，100%表示当1秒*/
+                transform: scale(0);
+                /*缩小为0*/
+            }
+
+            50% {
+                transform: scale(1.5);
+                /*放大1.5倍*/
+            }
+
+            100% {
+                transform: scale(1);
+                /*原始大小*/
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="demo">
+        <button @click="show =!show">放大缩小动画</button>
+        <transition name="bounce">
+            <p v-show="show">学习学习</p>
+        </transition>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#demo',
+            data: {
+                show: true
+            }
+        })
+    </script>
+</body>
+
+</html>

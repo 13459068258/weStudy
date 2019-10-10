@@ -1,26 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        .mxg-enter-active,
+        .mxg-leave-active {
+            transition: opacity 1s;
+        }
+
+        .mxg-enter,
+        .mxg-leave-to {
+            opacity: 0;
+        }
+
+        .mxg2-enter-active{
+            transition: all 1s;
+        }
+        
+        .mxg2-leave-active{
+            transition: all 5s;
+        }
+
+        .mxg2-enter,
+        .mxg2-leave-to {
+            opacity: 0;
+            transform: translateX(30px);
+        }
+
+    </style>
 </head>
+
 <body>
     <div id="app">
         <button @click="show = !show">渐变过渡</button>
-        <transition >
+        <transition name="mxg">
             <p v-show="show">meng</p>
         </transition>
     </div>
+
+    <div id="app2">
+        <button @click="show = !show">渐变过渡</button>
+        <transition name="mxg2">
+            <p v-show="show">meng</p>
+        </transition>
+    </div>
+
+
     <script src="./node_modules/vue/dist/vue.js"></script>
     <script>
-        var vm=new Vue({
-            el:'#app',
-            data:{
-                show:true,
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                show: true,
             }
         })
+
+        var vm2 = new Vue({
+            el: '#app2',
+            data: {
+                show: true,
+            }
+        })
+
     </script>
 </body>
+
 </html>
