@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="header">
+            <h1>头部</h1>
+        </div>
+        <div class="left">
+            <p>
+                <ul>
+                    <li><a href="#/foo">Go Foo</a></li>
+                    <li><a href="#/bar">Go Bar</a></li>
+                    <router-link to="/foo">Go Foo</router-link><br>
+                    <router-link to="/bar">Go Bar</router-link>
+                </ul>
+            </p>
+        </div>
+        <div class="main">
+            <!-- 路由出口 -->
+            <!-- 路由匹配到的组件将渲染在这里 -->
+            <router-view></router-view>
+        </div>
+    </div>
+
+
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script src="./node_modules/vue-router/dist/vue-router.js"></script>
+
+    <script>
+        // 1、定义组件
+        const Foo = {
+            template: '<div> 我是foo组件 </div>'
+        }
+        const Bar = {
+            template: '<div> 我是bar组件 </div>'
+        }
+
+        // 2、配置路由表
+        const router = new VueRouter({
+            routes: [
+                { path: '/foo', component: Foo },
+                { path: '/bar', component: Bar }
+            ]
+        })
+
+        new Vue({
+            el: '#app',
+            router
+        })
+
+    </script>
+
+</body>
+
+</html>
