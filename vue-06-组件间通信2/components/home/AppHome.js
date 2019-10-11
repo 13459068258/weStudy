@@ -35,6 +35,7 @@
             },
             deleteHobby(index){
                 this.hobbies.splice(index,1)
+                PubSub.publish('changeNum',1)
             }
         },
 
