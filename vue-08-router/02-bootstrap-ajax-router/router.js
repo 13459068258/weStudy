@@ -15,20 +15,26 @@
                     {
                         path: '/news/sport',
                         component: Sport,
-                        children:[
+                        children: [
                             {
-                                path:'/news/sport/detail/:id',
-                                component:SportDetail
+                                path: '/news/sport/detail/:id',
+                                component: SportDetail
                             }
                         ]
                     },
                     {
                         path: '/news/tech',
-                        component: Tech
+                        component: Tech,
+                        children:[
+                            {
+                                path:'/news/tech/detail/:id',
+                                component: TechDetail
+                            }
+                        ]
                     },
                     {
-                        path:'',
-                        redirect:'/news/sport'
+                        path: '',
+                        redirect: '/news/sport'
                     }
                 ]
 
