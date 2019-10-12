@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const webpack = require('webpack')
 module.exports = {
 
     mode: 'production',
@@ -9,7 +10,8 @@ module.exports = {
     entry: './src/main.js',
 
     devServer: {
-        contentBase: './dist'
+        contentBase: './dist',
+        hot: true
     },
 
     plugins: [
@@ -17,7 +19,8 @@ module.exports = {
             // 指定要打包的模板页面
             template: './index.html'
         }),
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new webpack.HotModuleReplacementPlugin()
     ],
     output: {
         // path:'./dist/',
